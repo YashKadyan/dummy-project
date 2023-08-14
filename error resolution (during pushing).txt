@@ -1,0 +1,105 @@
+E:\sample-repository>git pull --rebase origin main
+remote: Enumerating objects: 7, done.
+remote: Counting objects: 100% (7/7), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 4 (delta 1), reused 1 (delta 0), pack-reused 0
+Unpacking objects: 100% (4/4), 915 bytes | 228.00 KiB/s, done.
+From https://github.com/YashKadyan/dummy-project
+ * branch            main       -> FETCH_HEAD
+   e39f674..5299928  main       -> origin/main
+dropping 01a066b843dc57138486a9a93a7d359982651213 sum.java created in b1 -- patch contents already upstream
+dropping 07b3c03806c554ba5aeb12d87a8a4cd283a6321c branch2 -- patch contents already upstream
+Auto-merging t.txt
+CONFLICT (add/add): Merge conflict in t.txt
+error: could not apply def065b... branch3 t.txt created!
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply def065b... branch3 t.txt created!
+
+E:\sample-repository>git status
+interactive rebase in progress; onto 5299928
+Last commands done (6 commands done):
+   pick 2e6101f Changes done in sum.java file on branch2
+   pick def065b branch3 t.txt created!
+  (see more in file .git/rebase-merge/done)
+Next commands to do (2 remaining commands):
+   pick c17a086 Changes done in t.txt file!
+   pick a0c3af6 Commit message for git commands reference (sample-repository).txt file
+  (use "git rebase --edit-todo" to view and edit)
+You are currently rebasing branch 'main' on '5299928'.
+  (all conflicts fixed: run "git rebase --continue")
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   t.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        spock-lizard-docker/
+
+E:\sample-repository>git rebase --edit-todo
+
+E:\sample-repository>git rebase --continue
+[detached HEAD 397d818] branch3 t.txt created!
+ 1 file changed, 10 insertions(+)
+Auto-merging t.txt
+CONFLICT (content): Merge conflict in t.txt
+error: could not apply c17a086... Changes done in t.txt file!
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply c17a086... Changes done in t.txt file!
+
+E:\sample-repository>git commit -m "Commit message for t.txt file"
+[detached HEAD 209bd26] Commit message for t.txt file
+ 1 file changed, 3 insertions(+)
+
+E:\sample-repository>git status
+interactive rebase in progress; onto 5299928
+Last commands done (7 commands done):
+   pick def065b branch3 t.txt created!
+   pick c17a086 Changes done in t.txt file!
+  (see more in file .git/rebase-merge/done)
+Next command to do (1 remaining command):
+   pick a0c3af6 Commit message for git commands reference (sample-repository).txt file
+  (use "git rebase --edit-todo" to view and edit)
+You are currently editing a commit while rebasing branch 'main' on '5299928'.
+  (use "git commit --amend" to amend the current commit)
+  (use "git rebase --continue" once you are satisfied with your changes)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        spock-lizard-docker/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+E:\sample-repository>git rebase --continue
+Successfully rebased and updated refs/heads/main.
+
+E:\sample-repository>git status
+On branch main
+Your branch is ahead of 'origin/main' by 6 commits.
+  (use "git push" to publish your local commits)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        spock-lizard-docker/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+E:\sample-repository>git push -u origin main
+Enumerating objects: 19, done.
+Counting objects: 100% (19/19), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (16/16), done.
+Writing objects: 100% (16/16), 11.45 KiB | 5.73 MiB/s, done.
+Total 16 (delta 6), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (6/6), completed with 1 local object.
+To https://github.com/YashKadyan/dummy-project.git
+   5299928..0719829  main -> main
+warning: branch.main.remote has multiple values
+warning: branch.main.merge has multiple values
+branch 'main' set up to track 'origin/main'.
